@@ -31,11 +31,17 @@ g.remove((None, skos["broader"], '<http://urn.fi/URN:NBN:fi:au:ykl:muotoluokka')
 # }
 # """)
 
+query = """PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+DELETE WHERE {
+    ?sTest skos:broader <http://urn.fi/URN:NBN:fi:au:ykl:0> . } """
+
+
+
 # Playground ends
 # ******************************************************
 
 # If you used sparql
-# g.update(query)
+g.update(query)
 
 file_to_be_saved = open(sys.argv[2], "w+")
 file_to_be_saved.write(g.serialize(format="turtle").decode("utf-8"))
